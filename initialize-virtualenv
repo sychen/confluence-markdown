@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+
+function install-virtualenv {
+    VERSIONED_VIRTUALENV="virtualenv-15.0.0"
+    echo "[initialize-virtualenv] Fetching virtualenv"
+    curl --insecure --silent --remote-name https://pypi.python.org/packages/source/v/virtualenv/${VERSIONED_VIRTUALENV}.tar.gz
+    echo "[initialize-virtualenv] Extracting virtualenv"
+    tar xfz ${VERSIONED_VIRTUALENV}.tar.gz
+    mkdir -p $1
+    cd ${VERSIONED_VIRTUALENV}
+    echo "[initialize-virtualenv] Initializing virtualenv in" "$1"
+    ./virtualenv.py --quiet "../$1"
+    cd ..
+}
+
+
+function install-package {
+    cd "$1"
+    echo "[initialize-virtualenv] Activating virtualenv in" $1
+    source bin/activate
+    echo "[initialize-virtualenv] Installing" $2
+    pip install --quiet "$2"
+    cd -
+}
+
+
+install-virtualenv environment
+install-package environment requests
+install-package environment jinja2
+install-package environment jira
+install-package environment flask
+install-package environment ntplib
+install-package environment markdown
+
+

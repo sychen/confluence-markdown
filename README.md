@@ -1,3 +1,5 @@
-# confluence-markdown
+# initialize-virtualenv
 
-Provide a markdown file and upload it to a Confluence wiki
+Initialize virtualenv and install the required modules,
+if the system doesn't have them yet.
+
