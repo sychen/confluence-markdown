@@ -28,8 +28,9 @@ def change_python_intepreter():
 
     print('environment:', environment)
 
-    # Create virtualenv outside the git repositories,
-    # because git clean are always executed.
+    # If the flow will do `git clean` every time,
+    # it's better to create the virtualenv outside the git repository;
+    # otherwise you will need to create it every time.
 
     if not os.path.exists(environment):
         print("Virtualenv is not found, initializing")
